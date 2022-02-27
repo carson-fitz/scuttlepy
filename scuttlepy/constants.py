@@ -38,9 +38,9 @@ scuttle:
             openloop: True
 
             # PID controller for turning
-            turning_kp: 3
-            turning_ki: 0.1
-            turning_kd: 0.05
+            heading_kp: 3
+            heading_ki: 0.1
+            heading_kd: 0.05
 
             # Left wheel details
             l_wheel:
@@ -185,9 +185,9 @@ class Settings:
             self.OPENLOOP = chassis['wheels']['openloop']
             self.MOTOR_PWM_FREQUENCY = chassis['wheels']['pwm_frequency']
 
-            self.TURNING_KP = chassis['wheels']['turning_kp']
-            self.TURNING_KI = chassis['wheels']['turning_ki']
-            self.TURNING_KD = chassis['wheels']['turning_kd']
+            self.HEADING_KP = chassis['wheels']['heading_kp']
+            self.HEADING_KI = chassis['wheels']['heading_ki']
+            self.HEADING_KD = chassis['wheels']['heading_kd']
 
             self.PLATFORM = chassis['motor_control_platform']
 

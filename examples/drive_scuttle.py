@@ -7,21 +7,21 @@ from scuttlepy.constants import *
 scuttle = SCUTTLE()
 
 try:
-
-    print(scuttle.getGlobalPosition())
-    scuttle.move(0.25)
-    scuttle.turn(90)
-    print(np.degrees(scuttle.getHeading()))
-    scuttle.move(0.25)
-    scuttle.turn(90)
-    print(np.degrees(scuttle.getHeading()))
-    scuttle.move(0.25)
-    scuttle.turn(90)
-    print(np.degrees(scuttle.getHeading()))
-    scuttle.move(0.25)
-    scuttle.turn(90)
-    print(np.degrees(scuttle.getHeading()))
-    print(scuttle.getGlobalPosition())
+    while True:
+        print(scuttle.getGlobalPosition())
+        scuttle.move(1)
+        scuttle.turnPID(90)
+        print(np.degrees(scuttle.getHeading()))
+        scuttle.move(1)
+        scuttle.turnPID(90)
+        print(np.degrees(scuttle.getHeading()))
+        scuttle.move(1)
+        scuttle.turnPID(90)
+        print(np.degrees(scuttle.getHeading()))
+        scuttle.move(1)
+        scuttle.turnPID(90)
+        print(np.degrees(scuttle.getHeading()))
+        print(scuttle.getGlobalPosition())
 
 except KeyboardInterrupt:
 
