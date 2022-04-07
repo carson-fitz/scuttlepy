@@ -18,7 +18,6 @@ class Wheel:
 
     def __init__(self, motorOutput, bus, motorPwmFreq, encoderAddress, wheelRadius=0.04165, invertMotor=False, invertEncoder=False, KP=0.004, KI=0.025, KD=0, openLoop=True):
 
-        self.openLoop = openLoop
         self.invertMotor = invertMotor                                  # Invert motor mode
         self.invertEncoder = invertEncoder                              # Invert encoder mode
 
@@ -90,28 +89,12 @@ class Wheel:
     def setAngularVelocity(self, angularVelocity):                                                          # set wheel angular velocity
         self.targetAngularVelocity = angularVelocity                                                        # store target angular velocity
 
-        if not self.openLoop:                                           # If closed loop
-            self.pid.SetPoint = self.targetAngularVelocity              # update PID
-            self.angularVelocity = self.getAngularVelocity()            # Get latest angular velocity
-            self.pid.update(self.angularVelocity)                       # Give PID controller latest angular velocity
-            duty = self.pid.output                                      # Get duty cycle from PID controller
-
-            ### THIS NEEDS TO BE REFACTORED ###
-            if -0.222 < duty and duty < 0.222:
-                duty = (duty * 3)
-            elif duty >= 0.222:
-                duty = 0.666 + (0.429*(duty-0.222))
-            else:
-                duty = -0.666 + (-0.429*(duty+0.222))
-            ### THIS NEEDS TO BE REFACTORED ###
-
-        else:       # VERY TEMPORARY CODE                               # If open loop
-            if self.targetAngularVelocity > 0.15:
-                duty = (0.098*self.targetAngularVelocity)+0.148
-            elif self.targetAngularVelocity < -0.15:
-                duty = (0.098*self.targetAngularVelocity)-0.148
-            else:
-                duty = 0
+        if self.targetAngularVelocity > 0.15:
+            duty = (0.098*self.targetAngularVelocity)+0.148
+        elif self.targetAngularVelocity < -0.15:
+            duty = (0.098*self.targetAngularVelocity)-0.148
+        else:
+            duty = 0
 
         self.motor.setDuty(duty)                                        # Set duty cycle to motor
 

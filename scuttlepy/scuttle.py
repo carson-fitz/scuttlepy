@@ -1,20 +1,26 @@
 #!/usr/bin/python3
 
 import os
-import yaml
-import time
 import threading
+import time
+
 import numpy as np
 import RPi.GPIO as GPIO
+import yaml
 
-from . import PID
-from . import wheels
+from . import PID, wheels
 from .constants import *
+
 
 class SCUTTLE:
 
     def __init__(self, config=None, openLoop=True):
+        """_summary_
 
+        Args:
+            config (_type_, optional): _description_. Defaults to None.
+            openLoop (bool, optional): _description_. Defaults to True.
+        """
         GPIO.setmode(GPIO.BOARD)
 
         settings = Settings(file=config)
@@ -25,7 +31,7 @@ class SCUTTLE:
         self.globalPosition = [0, 0]
 
         self.headingOffset = 0
-        
+
         self.wheelBase = settings.WHEEL_BASE                             # L - meters    Measured from center of wheel base to inside edge of wheel.
         self.wheelRadius = settings.WHEEL_RADIUS                         # R - meters
 
@@ -74,6 +80,11 @@ class SCUTTLE:
         self.wheelsThread.start()                                       # Start wheel loop thread object
 
     def sleep(self, startTime):
+        """_summary_
+
+        Args:
+            startTime (_type_): _description_
+        """
         time.sleep(sorted([self._wait-((time.monotonic_ns()-startTime)/1e9), 0])[1])    # Measure time since start and subtract from sleep time
 
     def _wheelsLoop(self):
@@ -110,10 +121,26 @@ class SCUTTLE:
         self.wheelsThread.join()                                # Wait for the wheels thread to stop
 
     def setGlobalPosition(self, pos):                           # Set global position
+        """_summary_
+
+        Args:
+            pos (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.globalPosition = pos                               # Set global position to desired position
         return self.globalPosition                              # return new global position
 
     def offsetHeading(self, offset):                           # offset global heading
+        """_summary_
+
+        Args:
+            offset (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.headingOffset = offset
         heading = self.heading + self.headingOffset
         if heading < -np.pi:                                    # Keep heading within -pi to pi, [-180, 180] degrees
@@ -124,6 +151,14 @@ class SCUTTLE:
         return self.heading                                     # return new global heading
 
     def setHeading(self, heading):                              # set global heading
+        """_summary_
+
+        Args:
+            heading (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.heading = heading
         return self.heading                                     # return new global heading
 
@@ -140,16 +175,37 @@ class SCUTTLE:
         return self.angularVelocity                             # return angular velocity
 
     def setLinearVelocity(self, linearVelocity):                # set linear velocity
+        """_summary_
+
+        Args:
+            linearVelocity (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.targetMotion[0] = linearVelocity
         self.setMotion(self.targetMotion)
         return self.targetMotion                                # return linear velocity
 
     def setAngularVelocity(self, angularVelocity):              # set angular velocity
+        """_summary_
+
+        Args:
+            angularVelocity (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.targetMotion[1] = angularVelocity
         self.setMotion(self.targetMotion)
         return self.targetMotion                                # return angular velocity
 
     def setMotion(self, targetMotion):                          # Take chassis speed and command wheels
+        """_summary_
+
+        Args:
+            targetMotion (_type_): _description_
+        """
                                                                 # argument: [x_dot, theta_dot]
         self.targetMotion = targetMotion
 
@@ -184,59 +240,3 @@ class SCUTTLE:
         self.angularVelocity = C[1]                             # Update angularVelocity = [rad/s]
 
         return [self.velocity, self.angularVelocity]            # return [speed, angularVelocity]
-
-    # Basic Motion
-
-    def turn(self, angle, speed, threshold=1.5):                # Turn the robot, angle in degrees, withing + or - threshhold
-        angle = np.radians(angle)                               # Convert to radians
-        threshold = np.radians(threshold)                       # Convert to radians
-        angle = self.getHeading()+angle
-
-        if angle < -np.pi:                                      # Keep heading within -pi to pi, [-180, 180]
-            angle += 2 * np.pi
-        elif angle > np.pi:
-            angle -= 2 * np.pi
-
-        while not ((angle - threshold) <= self.getHeading()):
-
-            startTime = time.monotonic_ns()                     # Record loop start time
-
-            if angle > 0:
-                self.setMotion([0, speed])
-            if angle < 0:
-                self.setMotion([0, -speed])
-            self.sleep(startTime)
-
-    def move(self, distance):
-        startPosition = np.array(self.getGlobalPosition())
-
-        while np.linalg.norm(startPosition - np.array(self.getGlobalPosition())) < distance:
-
-            startTime = time.monotonic_ns()                     # Record loop start time
-            self.setMotion([self.maxVelocity/3,0])
-            self.sleep(startTime)
-
-        self.setMotion([0, 0])
-
-    def turnPID(self, angle, threshold=0):                      # Turn the robot, angle in degrees, withing + or - threshhold
-        angle = np.radians(angle)                               # Convert to radians
-        threshold = np.radians(threshold)                       # Convert to radians
-        angle = self.getHeading()+angle
-
-        if angle < -np.pi:                                      # Keep heading within -pi to pi, [-180, 180]
-            angle += 2 * np.pi
-        elif angle > np.pi:
-            angle -= 2 * np.pi
-
-        self.turningPID.SetPoint=angle
-
-        while int(np.degrees(self.getHeading())) != int(np.degrees(angle)):
-            startTime = time.monotonic_ns()                     # Record loop start time
-            self.turningPID.update(self.getHeading())
-            self.setMotion([0, self.turningPID.output])
-            self.sleep(startTime)
-
-        self.setMotion([0, 0])
-
-    def goTo(self, position):
-        pass
