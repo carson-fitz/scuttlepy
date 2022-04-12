@@ -8,7 +8,13 @@ if GPIO.getmode() is None:
 class Motor:
 
     def __init__(self, pins, frequency=150, invert=False):
+        """_summary_
 
+        Args:
+            pins (_type_): _description_
+            frequency (int, optional): _description_. Defaults to 150.
+            invert (bool, optional): _description_. Defaults to False.
+        """
         self.pins = pins                                # First pin will be digital and second pin will be PWM
         self.duty = 0                                   # Initial Duty %
         self.frequency = frequency                      # PWM frequency (Hz)
@@ -21,6 +27,11 @@ class Motor:
         self.motor.start(self.duty)
 
     def setDuty(self, duty):
+        """_summary_
+
+        Args:
+            duty (_type_): _description_
+        """
         self.duty = round(sorted((-1, float(duty), 1))[1], 2)  # Make sure duty is between -1 and 1
 
         duty = self.duty*100
@@ -35,6 +46,8 @@ class Motor:
             self.motor.ChangeDutyCycle(duty if (duty > 0) else abs(100+duty))
 
     def stop(self):
+        """_summary_
+        """
         GPIO.output(self.pins[0], False)
         self.motor.stop()
         GPIO.cleanup(self.pins)

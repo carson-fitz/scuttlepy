@@ -48,12 +48,19 @@ class Wheel:
         self.update()                                                                       # Update values in object
 
     def update(self):
+        """_summary_
+        """
         self._positions.append(self.encoder.readPosition())             # append new position to _positions queue. This will push out the oldest item in the queue
         self._timestamps.append(time.monotonic_ns())                    # append new timestamp to _timestamps queue. This will push out the oldest item in the queue
         self.position = self._positions[1]                              # Set latest position
         self.timestamp = self._timestamps[1]                            # set timestamp of latest data
 
     def getRotation(self):                                              # calculate the increment of a wheel in ticks
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         rotation = self._positions[1] - self._positions[0]              # calculate how much wheel has rotated
         if(-rotation >= self.rolloverLimit):                            # if movement is large (has rollover)
             rotation = (rotation + self.encoder.resolution)             # handle forward rollover
@@ -63,23 +70,43 @@ class Wheel:
         return rotation                                                 # return wheel advancement in ticks
 
     def getTravel(self):                                                                # calculate travel of the wheel in meters
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         rotation = self.getRotation()                                                   # get wheel rotation between measurements
         distance = (2*np.pi*self.radius)*(rotation/self.encoder.resolution)             # calculate distance traveled in wheel rotation
         return distance                                                                 # return distance traveled in meters
 
     def getLinearVelocity(self):                                                        # get wheel linear velocity
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         distance = self.getTravel()                                                     # get wheel travel
         deltaTime = (self._timestamps[1] - self._timestamps[0])/1e9                     # calculate deltaTime, convert from ns to s
         self.linearVelocity = distance/deltaTime                                        # calculate wheel linear velocity
         return self.linearVelocity                                                      # return wheel linear velocity in meters/second
 
     def getAngularVelocity(self):                                                                           # get wheel angular velocity
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         rotation = self.getRotation()                                                                       # get wheel rotation between measurements
         deltaTime = (self._timestamps[1] - self._timestamps[0])/1e9                                         # calculate deltaTime, convert from ns to s
         self.angularVelocity = ((rotation * (np.pi/(self.encoder.resolution/2))) / deltaTime)               # speed produced from true wheel rotation (rad)
         return self.angularVelocity                                                                         # returns wheel angular velocity in radians/second
 
     def setAngularVelocity(self, angularVelocity):                                                          # set wheel angular velocity
+        """_summary_
+
+        Args:
+            angularVelocity (_type_): _description_
+        """
         self.targetAngularVelocity = angularVelocity                                                        # store target angular velocity
 
         if self.targetAngularVelocity > 0.15:
@@ -92,4 +119,6 @@ class Wheel:
         self.motor.setDuty(duty)                                        # Set duty cycle to motor
 
     def stop(self):
+        """_summary_
+        """
         self.motor.stop()

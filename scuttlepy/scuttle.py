@@ -112,6 +112,8 @@ class SCUTTLE:
         self.leftWheel.stop()                                   # Once wheels thread loop has broken, stop left wheel
 
     def stop(self):                                             # Stop SCUTTLE
+        """_summary_
+        """
         self.setMotion([0, 0])                                  # Set linear and angular velocity to 0
         self.stopped = True                                     # Set stopped flag to True
         self.wheelsThread.join()                                # Wait for the wheels thread to stop
@@ -159,15 +161,35 @@ class SCUTTLE:
         return self.heading                                     # return new global heading
 
     def getGlobalPosition(self):                                # get global position
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.globalPosition                              # return global position
 
     def getHeading(self):                                       # get global heading
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.heading                                     # return global heading
 
     def getLinearVelocity(self):                                # get linear velocity
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.velocity                                    # return linear velocity
 
     def getAngularVelocity(self):                               # get angular velocity
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.angularVelocity                             # return angular velocity
 
     def setLinearVelocity(self, linearVelocity):                # set linear velocity
@@ -221,6 +243,8 @@ class SCUTTLE:
 
     def getMotion(self):                                        # Forward Kinematics
                                                                 # Function to update and return [x_dot,theta_dot]
+        """_summary_
+        """
         L = self.wheelBase/2
         R = self.wheelRadius
 
