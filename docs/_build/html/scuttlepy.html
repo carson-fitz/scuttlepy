@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scuttlepy package &mdash; SCUTTLEPy  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="scuttlepy" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SCUTTLEPy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">scuttlepy</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">scuttlepy package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scuttlepy.constants">scuttlepy.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scuttlepy.encoder">scuttlepy.encoder module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scuttlepy.motor">scuttlepy.motor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scuttlepy.scuttle">scuttlepy.scuttle module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scuttlepy.wheels">scuttlepy.wheels module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-scuttlepy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCUTTLEPy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">scuttlepy</a> &raquo;</li>
+      <li>scuttlepy package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/scuttlepy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="scuttlepy-package">
+<h1>scuttlepy package<a class="headerlink" href="#scuttlepy-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-scuttlepy.constants">
+<span id="scuttlepy-constants-module"></span><h2>scuttlepy.constants module<a class="headerlink" href="#module-scuttlepy.constants" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="scuttlepy.constants.Settings">
+<em class="property">class </em><code class="descclassname">scuttlepy.constants.</code><code class="descname">Settings</code><span class="sig-paren">(</span><em>file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.constants.Settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scuttlepy.encoder">
+<span id="scuttlepy-encoder-module"></span><h2>scuttlepy.encoder module<a class="headerlink" href="#module-scuttlepy.encoder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="scuttlepy.encoder.Encoder">
+<em class="property">class </em><code class="descclassname">scuttlepy.encoder.</code><code class="descname">Encoder</code><span class="sig-paren">(</span><em>address</em>, <em>bus=1</em>, <em>invert=False</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.encoder.Encoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="scuttlepy.encoder.Encoder.readAngle">
+<code class="descname">readAngle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.encoder.Encoder.readAngle" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.encoder.Encoder.readMagnitude">
+<code class="descname">readMagnitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.encoder.Encoder.readMagnitude" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.encoder.Encoder.readPosition">
+<code class="descname">readPosition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.encoder.Encoder.readPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scuttlepy.motor">
+<span id="scuttlepy-motor-module"></span><h2>scuttlepy.motor module<a class="headerlink" href="#module-scuttlepy.motor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="scuttlepy.motor.Motor">
+<em class="property">class </em><code class="descclassname">scuttlepy.motor.</code><code class="descname">Motor</code><span class="sig-paren">(</span><em>pins</em>, <em>frequency=150</em>, <em>invert=False</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.motor.Motor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="scuttlepy.motor.Motor.setDuty">
+<code class="descname">setDuty</code><span class="sig-paren">(</span><em>duty</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.motor.Motor.setDuty" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>duty (_type_): _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.motor.Motor.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.motor.Motor.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scuttlepy.scuttle">
+<span id="scuttlepy-scuttle-module"></span><h2>scuttlepy.scuttle module<a class="headerlink" href="#module-scuttlepy.scuttle" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="scuttlepy.scuttle.SCUTTLE">
+<em class="property">class </em><code class="descclassname">scuttlepy.scuttle.</code><code class="descname">SCUTTLE</code><span class="sig-paren">(</span><em>config=None</em>, <em>openLoop=True</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.getAngularVelocity">
+<code class="descname">getAngularVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.getAngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.getGlobalPosition">
+<code class="descname">getGlobalPosition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.getGlobalPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.getHeading">
+<code class="descname">getHeading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.getHeading" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.getLinearVelocity">
+<code class="descname">getLinearVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.getLinearVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.getMotion">
+<code class="descname">getMotion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.getMotion" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.offsetHeading">
+<code class="descname">offsetHeading</code><span class="sig-paren">(</span><em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.offsetHeading" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>offset (_type_): _description_</dd>
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.setAngularVelocity">
+<code class="descname">setAngularVelocity</code><span class="sig-paren">(</span><em>angularVelocity</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.setAngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>angularVelocity (_type_): _description_</dd>
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.setGlobalPosition">
+<code class="descname">setGlobalPosition</code><span class="sig-paren">(</span><em>pos</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.setGlobalPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>pos (_type_): _description_</dd>
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.setHeading">
+<code class="descname">setHeading</code><span class="sig-paren">(</span><em>heading</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.setHeading" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>heading (_type_): _description_</dd>
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.setLinearVelocity">
+<code class="descname">setLinearVelocity</code><span class="sig-paren">(</span><em>linearVelocity</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.setLinearVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>linearVelocity (_type_): _description_</dd>
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.setMotion">
+<code class="descname">setMotion</code><span class="sig-paren">(</span><em>targetMotion</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.setMotion" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>targetMotion (_type_): _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.sleep">
+<code class="descname">sleep</code><span class="sig-paren">(</span><em>startTime</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.sleep" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>startTime (_type_): _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.scuttle.SCUTTLE.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.scuttle.SCUTTLE.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scuttlepy.wheels">
+<span id="scuttlepy-wheels-module"></span><h2>scuttlepy.wheels module<a class="headerlink" href="#module-scuttlepy.wheels" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="scuttlepy.wheels.Wheel">
+<em class="property">class </em><code class="descclassname">scuttlepy.wheels.</code><code class="descname">Wheel</code><span class="sig-paren">(</span><em>motorOutput</em>, <em>bus</em>, <em>encoderAddress</em>, <em>motorPwmFreq</em>, <em>wheelRadius=0.04165</em>, <em>invertMotor=False</em>, <em>invertEncoder=False</em>, <em>KP=0.004</em>, <em>KI=0.025</em>, <em>KD=0</em>, <em>openLoop=True</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.getAngularVelocity">
+<code class="descname">getAngularVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.getAngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.getLinearVelocity">
+<code class="descname">getLinearVelocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.getLinearVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.getRotation">
+<code class="descname">getRotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.getRotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.getTravel">
+<code class="descname">getTravel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.getTravel" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>_type_: _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.setAngularVelocity">
+<code class="descname">setAngularVelocity</code><span class="sig-paren">(</span><em>angularVelocity</em><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.setAngularVelocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>angularVelocity (_type_): _description_</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="scuttlepy.wheels.Wheel.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scuttlepy.wheels.Wheel.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scuttlepy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-scuttlepy" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="scuttlepy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Daniyal Ansari.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
