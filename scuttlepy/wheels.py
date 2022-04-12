@@ -4,19 +4,19 @@ import time
 import numpy as np
 from collections import deque
 
-from . import PID
 from . import motor
 from . import encoder
 from .constants import *
 
 import RPi.GPIO as GPIO
+# from simple_pid import PID
 
 if GPIO.getmode() is None:
     GPIO.setmode(GPIO.BOARD)
 
 class Wheel:
 
-    def __init__(self, motorOutput, bus, motorPwmFreq, encoderAddress, wheelRadius=0.04165, invertMotor=False, invertEncoder=False, KP=0.004, KI=0.025, KD=0, openLoop=True):
+    def __init__(self, motorOutput, bus, encoderAddress, motorPwmFreq, wheelRadius=0.04165, invertMotor=False, invertEncoder=False, KP=0.004, KI=0.025, KD=0, openLoop=True):
 
         self.invertMotor = invertMotor                                  # Invert motor mode
         self.invertEncoder = invertEncoder                              # Invert encoder mode
@@ -41,13 +41,6 @@ class Wheel:
         self.targetVelocity = 0                                         # (radians/second)
         self.angularVelocity = 0                                        # (radians/second)
         self.linearVelocity = 0                                         # (meters/second)
-
-        # PID Gains
-        self.KP = KP                                                    # PID controller P gain
-        self.KI = KI                                                    # PID controller I gain
-        self.KD = KD                                                    # PID controller D gain
-
-        self.pid = PID.PID(self.KP, self.KI, self.KD)                                       # Create PID controller object
 
         self.rolloverLimit = self.pulleyRatio * self.encoder.resolution                     # limit for rollover
         self._positions = deque([self.position, self.encoder.readPosition()], maxlen=2)     # Create FIFO queue object for wheel positions

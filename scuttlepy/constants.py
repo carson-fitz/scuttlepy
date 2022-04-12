@@ -185,10 +185,6 @@ class Settings:
             self.OPENLOOP = chassis['wheels']['openloop']
             self.MOTOR_PWM_FREQUENCY = chassis['wheels']['pwm_frequency']
 
-            self.TURNING_KP = chassis['wheels']['turning_kp']
-            self.TURNING_KI = chassis['wheels']['turning_ki']
-            self.TURNING_KD = chassis['wheels']['turning_kd']
-
             self.PLATFORM = chassis['motor_control_platform']
 
             self.LEFT_WHEEL_MOTOR_PINS = (chassis['wheels']['l_wheel']['motor']['digital'], chassis['wheels']['l_wheel']['motor']['pwm'])

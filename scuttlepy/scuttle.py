@@ -8,9 +8,10 @@ import numpy as np
 import RPi.GPIO as GPIO
 import yaml
 
-from . import PID, wheels
+from . import wheels
 from .constants import *
 
+# from simple_pid import PID
 
 class SCUTTLE:
 
@@ -41,8 +42,8 @@ class SCUTTLE:
 
         self.leftWheel  = wheels.Wheel(settings.LEFT_WHEEL_MOTOR_PINS,                          # Create left wheel object
                                        settings.I2C_BUS,
-                                       settings.MOTOR_PWM_FREQUENCY,
                                        settings.LEFT_WHEEL_ENCODER_ADDRESS,
+                                       settings.MOTOR_PWM_FREQUENCY,
                                        invertEncoder=settings.LEFT_WHEEL_ENCODER_INVERT,
                                        invertMotor=settings.LEFT_WHEEL_MOTOR_INVERT,
                                        openLoop=settings.OPENLOOP,
@@ -50,8 +51,8 @@ class SCUTTLE:
 
         self.rightWheel = wheels.Wheel(settings.RIGHT_WHEEL_MOTOR_PINS,                         # Create right wheel object
                                        settings.I2C_BUS,
-                                       settings.MOTOR_PWM_FREQUENCY,
                                        settings.RIGHT_WHEEL_ENCODER_ADDRESS,
+                                       settings.MOTOR_PWM_FREQUENCY,
                                        invertEncoder=settings.RIGHT_WHEEL_ENCODER_INVERT,
                                        invertMotor=settings.RIGHT_WHEEL_MOTOR_INVERT,
                                        openLoop=settings.OPENLOOP,
@@ -70,11 +71,6 @@ class SCUTTLE:
 
         self._loopFreq = 50                                             # Target Wheel Loop frequency (Hz)
         self._wait = 1/self._loopFreq                                   # Corrected wait time between encoder measurements (s)
-
-        self.turningPID = PID.PID(settings.TURNING_KP,                  # Create PID controller object for turning
-                                  settings.TURNING_KI,
-                                  settings.TURNING_KD
-                                  )
 
         self.wheelsThread = threading.Thread(target=self._wheelsLoop)   # Create wheel loop thread object
         self.wheelsThread.start()                                       # Start wheel loop thread object

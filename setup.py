@@ -7,7 +7,8 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md')) as f:
     long_description = f.read()
 
-install_requires=['smbus2',
+install_requires=['numpy',
+                  'smbus2',
                   'fastlogging',
                   'pyyaml',
                  ]
