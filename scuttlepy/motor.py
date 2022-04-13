@@ -11,9 +11,9 @@ class Motor:
         """_summary_
 
         Args:
-            pins (_type_): _description_
-            frequency (int, optional): _description_. Defaults to 150.
-            invert (bool, optional): _description_. Defaults to False.
+            pins (tuple): Digital and PWM Pins to control motor.
+            frequency (int, optional): PWM frequency. Defaults to 150.
+            invert (bool, optional): Invert motor direction. Defaults to False.
         """
         self.pins = pins                                # First pin will be digital and second pin will be PWM
         self.duty = 0                                   # Initial Duty %
@@ -23,20 +23,20 @@ class Motor:
         for pin in pins:                                # Set motor pins as outputs
             GPIO.setup(pin, GPIO.OUT)
 
-        self.motor = GPIO.PWM(pins[1], self.frequency)   # set first pin as PWM and set freq
+        self.motor = GPIO.PWM(pins[1], self.frequency)  # Set first pin as PWM and set freq
         self.motor.start(self.duty)
 
     def setDuty(self, duty):
-        """_summary_
+        """Set motor duty cycle.
 
         Args:
-            duty (_type_): _description_
+            duty (float): Duty cycle between -1 and 1.
         """
         self.duty = round(sorted((-1, float(duty), 1))[1], 2)  # Make sure duty is between -1 and 1
 
         duty = self.duty*100
 
-        GPIO.output(self.pins[0], duty < 0)            # Set direction pin high if duty cycle is negative
+        GPIO.output(self.pins[0], duty < 0)             # Set direction pin high if duty cycle is negative
 
         if duty == 0:
             GPIO.output(self.pins[0], False)
@@ -46,7 +46,7 @@ class Motor:
             self.motor.ChangeDutyCycle(duty if (duty > 0) else abs(100+duty))
 
     def stop(self):
-        """_summary_
+        """Stop the motor.
         """
         GPIO.output(self.pins[0], False)
         self.motor.stop()

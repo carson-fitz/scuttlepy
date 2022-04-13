@@ -6,12 +6,12 @@ from smbus2 import SMBus
 class Encoder:
 
     def __init__(self, address, bus=1, invert=False):
-        """_summary_
+        """testi
 
         Args:
-            address (_type_): _description_
-            bus (int, optional): _description_. Defaults to 1.
-            invert (bool, optional): _description_. Defaults to False.
+            address (int): Encoder I2C address. 
+            bus (int, optional): Encoder I2C bus. Defaults to 1.
+            invert (bool, optional): Invert encoder direction. Defaults to False.
         """
 
         self.bus = SMBus(bus)                                               # I2C Bus
@@ -23,10 +23,10 @@ class Encoder:
         self.magnitude = self.readMagnitude()
 
     def readPosition(self):
-        """_summary_
+        """Read encoder raw position.
 
         Returns:
-            _type_: _description_
+            int: Raw encoder position between 0 and 16384.
         """
         pos = self.bus.read_i2c_block_data(self.address, 0xFE, 2)           # Request data from registers 0xFE & 0xFF of the encoder
                                                                             # Takes ~700 microseconds.
@@ -36,20 +36,20 @@ class Encoder:
         return self.position                                                # Return Raw encoder position (0 to 16384)
 
     def readAngle(self):
-        """_summary_
+        """Read encoder angle in radians.
 
         Returns:
-            _type_: _description_
+            float: Encoder angle in radians.
         """
         self.readPosition()                                                 # Read encoder position
         self.angle = self.position * ((2 * np.pi) / self.resolution)        # Scale values to get radians
         return self.angle                                                   # Return encoder angle in radians
 
     def readMagnitude(self):
-        """_summary_
+        """Read encoder magnitude.
 
         Returns:
-            _type_: _description_
+            int: Encoder magnitude.
         """
         magnitude = self.bus.read_i2c_block_data(self.address, 0xFC, 2)     # Request data from registers 0xFC & 0xFD of the encoder
                                                                             # Takes ~700 microseconds.

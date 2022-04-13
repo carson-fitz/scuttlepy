@@ -19,8 +19,8 @@ class SCUTTLE:
         """_summary_
 
         Args:
-            config (_type_, optional): _description_. Defaults to None.
-            openLoop (bool, optional): _description_. Defaults to True.
+            config (string, optional): Path to a scuttlepy config file. Defaults to None.
+            openLoop (bool, optional): Enable/Disable open loop control. Defaults to True.
         """
         GPIO.setmode(GPIO.BOARD)
 
@@ -75,12 +75,8 @@ class SCUTTLE:
         self.wheelsThread = threading.Thread(target=self._wheelsLoop)   # Create wheel loop thread object
         self.wheelsThread.start()                                       # Start wheel loop thread object
 
-    def sleep(self, startTime):
-        """_summary_
+    def _sleep(self, startTime):
 
-        Args:
-            startTime (_type_): _description_
-        """
         time.sleep(sorted([self._wait-((time.monotonic_ns()-startTime)/1e9), 0])[1])    # Measure time since start and subtract from sleep time
 
     def _wheelsLoop(self):
@@ -105,39 +101,39 @@ class SCUTTLE:
 
             self.setHeading(self.heading + ((rightWheelTravel - leftWheelTravel)/(self.wheelBase))) # Calculate and update global heading
 
-            self.sleep(startTime)
+            self._sleep(startTime)
             # print((time.monotonic_ns()-startTime)/1e6)        # Print loop time in ms
 
         self.rightWheel.stop()                                  # Once wheels thread loop has broken, stop right wheel
         self.leftWheel.stop()                                   # Once wheels thread loop has broken, stop left wheel
 
     def stop(self):                                             # Stop SCUTTLE
-        """_summary_
+        """Stop the SCUTTLE.
         """
         self.setMotion([0, 0])                                  # Set linear and angular velocity to 0
         self.stopped = True                                     # Set stopped flag to True
         self.wheelsThread.join()                                # Wait for the wheels thread to stop
 
     def setGlobalPosition(self, pos):                           # Set global position
-        """_summary_
+        """Set the global position of the SCUTTLE.
 
         Args:
-            pos (_type_): _description_
+            pos (list): x and y global position of SCUTTLE.
 
         Returns:
-            _type_: _description_
+            list: x and y global position
         """
         self.globalPosition = pos                               # Set global position to desired position
         return self.globalPosition                              # return new global position
 
     def offsetHeading(self, offset):                           # offset global heading
-        """_summary_
+        """Offset global heading by amount.
 
         Args:
-            offset (_type_): _description_
+            offset (float): Offset in radians.
 
         Returns:
-            _type_: _description_
+            float: Offset in radians.
         """
         self.headingOffset = offset
         heading = self.heading + self.headingOffset
@@ -145,84 +141,84 @@ class SCUTTLE:
             heading += 2 * np.pi
         elif heading > np.pi:
             heading -= 2 * np.pi
-        self.setHeadin(heading)                                 # Set heading to heading with offset
+        self.setHeading(heading)                                 # Set heading to heading with offset
         return self.heading                                     # return new global heading
 
     def setHeading(self, heading):                              # set global heading
-        """_summary_
+        """Set current global heading.
 
         Args:
-            heading (_type_): _description_
+            heading (float): Heading in radians.
 
         Returns:
-            _type_: _description_
+            float: Heading in radians.
         """
         self.heading = heading
         return self.heading                                     # return new global heading
 
     def getGlobalPosition(self):                                # get global position
-        """_summary_
+        """Get the global position of the SCUTTLE.
 
         Returns:
-            _type_: _description_
+            list: x and y global position
         """
         return self.globalPosition                              # return global position
 
     def getHeading(self):                                       # get global heading
-        """_summary_
+        """Get current global heading.
 
         Returns:
-            _type_: _description_
+            float: Heading in radians.
         """
         return self.heading                                     # return global heading
 
     def getLinearVelocity(self):                                # get linear velocity
-        """_summary_
+        """Get current linear velocity.
 
         Returns:
-            _type_: _description_
+            float: Linear velocity in meters/second.
         """
         return self.velocity                                    # return linear velocity
 
     def getAngularVelocity(self):                               # get angular velocity
-        """_summary_
+        """Get current angular velocity.
 
         Returns:
-            _type_: _description_
+            float: Angular velocity in radians/second.
         """
         return self.angularVelocity                             # return angular velocity
 
     def setLinearVelocity(self, linearVelocity):                # set linear velocity
-        """_summary_
+        """Set linear velocity.
 
         Args:
-            linearVelocity (_type_): _description_
+            linearVelocity (float): Linear velocity in meters/second.
 
         Returns:
-            _type_: _description_
+            float: Linear velocity in meters/second.
         """
         self.targetMotion[0] = linearVelocity
         self.setMotion(self.targetMotion)
         return self.targetMotion                                # return linear velocity
 
     def setAngularVelocity(self, angularVelocity):              # set angular velocity
-        """_summary_
+        """Set angular velocity.
 
         Args:
-            angularVelocity (_type_): _description_
+            angularVelocity (float): Angular velocity in radians/second.
 
         Returns:
-            _type_: _description_
+            float: Angular velocity in radians/second.
         """
         self.targetMotion[1] = angularVelocity
         self.setMotion(self.targetMotion)
         return self.targetMotion                                # return angular velocity
 
     def setMotion(self, targetMotion):                          # Take chassis speed and command wheels
-        """_summary_
+        """Set the linear and angular velocity of SCUTTLE.
 
         Args:
-            targetMotion (_type_): _description_
+            targetMotion (tuple): Linear and angular velocity in meters/second and radians/second.
         """
                                                                 # argument: [x_dot, theta_dot]
         self.targetMotion = targetMotion
@@ -243,7 +239,10 @@ class SCUTTLE:
 
     def getMotion(self):                                        # Forward Kinematics
                                                                 # Function to update and return [x_dot,theta_dot]
-        """_summary_
+        """Get the linear and angular velocity of SCUTTLE.
+
+        Returns:
+            list: Linear and angular velocity in meters/second and radians/second.
         """
         L = self.wheelBase/2
         R = self.wheelRadius
